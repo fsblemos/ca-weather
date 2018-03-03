@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-now">
+  <div class="weather">
     <WeatherBar/>
     <div class="container">
       <WeatherCard v-for="card in cards" v-bind="card"/>
