@@ -1,0 +1,19 @@
+:root {
+  --grey-light: #f1f1f1;
+  --grey-dark: #737c84;
+
+  --weather-blue: #69a3ff;
+  --weather-orange: #ff9632;
+  --weather-red: #ed1946;
+
+  --box-shadow-color: rgba(51, 51, 51, .5);
+  --background-color: var(--grey-light);
+  --font-color: var(--grey-dark);
+}
+
+body, html {
+  background-color: var(--background-color);
+  font-family: Helvetica, Arial, sans-serif;
+  color: var(--font-color);
+  margin: 0;
+}
