@@ -1,5 +1,5 @@
 <template>
-  <ca-card :title="`${city}, ${uf}`">
+  <ca-card :title="`${city}, ${uf}`" :loading="loading">
     <WeatherCardTemperature :temperature="temperature" />
     <WeatherCardFooter
       slot="footer"
@@ -20,6 +20,7 @@ export default {
     WeatherCardTemperature,
   },
   props: {
+    loading: Boolean,
     city: String,
     uf: String,
     temperature: Number,
@@ -32,7 +33,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>

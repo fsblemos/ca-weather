@@ -3,12 +3,15 @@
     <header class="ca-card-header">
       <p class="ca-card-title">{{ title }}</p>
     </header>
-    <div class="ca-card-body">
-      <slot></slot>
-    </div>
-    <footer class="ca-card-footer">
-      <slot name="footer"></slot>
-    </footer>
+    <CaLoader v-if="loading" />
+    <template v-else>
+      <div class="ca-card-body">
+        <slot></slot>
+      </div>
+      <footer class="ca-card-footer">
+        <slot name="footer"></slot>
+      </footer>
+    </template>
   </div>
 </template>
 
@@ -17,6 +20,10 @@ export default {
   name: 'CaCard',
   props: {
     title: String,
+    loading: {
+      type: Boolean,
+      default: true,
+    },
   }
 };
 </script>
@@ -26,10 +33,18 @@ export default {
   background-color: white;
   box-shadow: 2px 1px 5px 0px var(--box-shadow-color);
   border: 1px solid var(--grey-light);
-  /* box-shadow: 1px 1px 4px -1px var(--box-shadow-color); */
   min-height: 250px;
   min-width: 225px;
   position: relative;
+}
+
+.ca-card /deep/ .ca-loader {
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
 }
 
 .ca-card-title {
