@@ -16,14 +16,27 @@ export default {
   components: {
     WeatherCard,
   },
+  created() {
+    this.cards.forEach((card) => {
+      this.$api.weather.getWeather({ city: card.city, uf: card.uf })
+        .then(weather => this.setData(card, weather));
+    })
+  },
   data() {
     return {
       cards: [
-        { city: 'Nuuk', uf: 'GL', temperature: -4, humidity: 75, pressure: 892 },
-        { city: 'Urubici', uf: 'BR', temperature: 19, humidity: 75, pressure: 892 },
-        { city: 'Nairobi', uf: 'KE', temperature: 31, humidity: 75, pressure: 892 },
+        { city: 'Nuuk', uf: 'GL' },
+        { city: 'Urubici', uf: 'BR' },
+        { city: 'Nairobi', uf: 'KE' },
       ],
     };
+  },
+  methods: {
+    setData(card, { temp, humidity, pressure }) {
+      this.$set(card, 'temperature', temp);
+      this.$set(card, 'humidity', humidity);
+      this.$set(card, 'pressure', pressure);
+    },
   },
 };
 </script>

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import App from './App';
+import api from './api';
 
 import './filters/index';
 
@@ -11,6 +12,9 @@ const requireComponents = (context) => {
 };
 
 requireComponents(require.context('./components', true, /\.vue$/i));
+
+Vue.prototype.$api = api;
+Vue.api = api;
 
 new Vue({
   el: '#app',
