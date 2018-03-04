@@ -1,12 +1,21 @@
 <template>
   <div class="weather-container">
-    <WeatherCard v-for="card in cards" v-bind="card"/>
+    <WeatherCard
+      class="weather-card"
+      v-for="card in cards"
+      :key="card.city"
+      v-bind="card" />
   </div>
 </template>
 
 <script>
+import WeatherCard from './WeatherCard';
+
 export default {
   name: 'WeatherNow',
+  components: {
+    WeatherCard,
+  },
   data() {
     return {
       cards: [
@@ -20,9 +29,13 @@ export default {
 </script>
 
 <style scoped>
-.weather-cards {
+.weather-container {
+  align-items: center;
   display: flex;
-  margin: 20px;
+  height: 100%;
+  justify-content: space-between;
+  margin: auto;
+  max-width: var(--body-width);
 }
 
 @media screen and (max-width: 880px) {
@@ -30,14 +43,9 @@ export default {
     flex-direction: column;
     padding: 2rem;
   }
-}
 
-.weather-container {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  max-width: var(--body-width);
-  height: 100%;
+  .weather-card:not(:last-child) {
+    margin-bottom: 30px;
+  }
 }
 </style>

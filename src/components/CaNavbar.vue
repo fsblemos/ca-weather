@@ -1,19 +1,24 @@
 <template>
-  <nav class="weather-bar">
-    <img src="/src/assets/images/logo.svg" alt="Logo da aplicação">
+  <nav class="ca-navbar">
+    <img :src="src" :alt="alt">
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'WeatherBar',
+  name: 'CaNavbar',
+  props: {
+    src: String,
+    alt: String,
+  },
 };
 </script>
 
 <style scoped>
-.weather-bar {
+.ca-navbar {
   align-items: center;
   background-color: white;
+  box-shadow: 2px 1px 7px 0px var(--box-shadow-color);
   display: flex;
   height: var(--nav-height);
   justify-content: center;
