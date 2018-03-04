@@ -47,10 +47,25 @@ export default {
 <style scoped>
 .weather-card {
   padding: 5px;
-  /* width: 250px;
-  height: 250px; */
+  min-width: 225px;
+  min-height: 250px;
   background-color: white;
   box-shadow: 1px 1px 4px -1px var(--box-shadow-color);
+}
+
+/* @media screen and (max-width: 880px) {
+  .weather-card {
+    margin-bottom: 30px;
+  }
+  /* :root {
+    --flex-direction: column;
+  }
+}*/
+
+@media screen and (max-width: 880px) {
+  .weather-card:not(:last-child) {
+    margin-bottom: 30px;
+  }
 }
 
 .weather-card-title {

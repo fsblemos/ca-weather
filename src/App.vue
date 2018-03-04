@@ -1,7 +1,10 @@
 <template>
-  <div id="app">
-    <Weather/>
-  </div>
+  <main id="app">
+    <WeatherBar/>
+    <section class="section">
+      <Weather/>
+    </section>
+  </main>
 </template>
 
 <script>

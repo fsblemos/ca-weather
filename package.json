@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
-    "dev": "webpack-dev-server --progress --color --mode development"
+    "dev": "webpack-dev-server --progress --color --mode development",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "babel-loader": "^7.1.3",
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.10",
+    "file-loader": "^1.1.11",
     "html-webpack-plugin": "github:webpack-contrib/html-webpack-plugin",
     "jest": "^22.4.2",
     "vue-jest": "^2.1.0",

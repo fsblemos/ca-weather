@@ -1,9 +1,6 @@
 <template>
-  <div class="weather">
-    <WeatherBar/>
-    <div class="container">
-      <WeatherCard v-for="card in cards" v-bind="card"/>
-    </div>
+  <div class="weather-container">
+    <WeatherCard v-for="card in cards" v-bind="card"/>
   </div>
 </template>
 
@@ -28,27 +25,19 @@ export default {
   margin: 20px;
 }
 
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .container {
+@media screen and (max-width: 880px) {
+  .weather-container {
     flex-direction: column;
+    padding: 2rem;
   }
 }
 
-.container {
-  margin: auto;
+.weather-container {
   align-items: center;
   display: flex;
-  height: 100vh;
   justify-content: space-between;
-}
-
-/deep/ .weather-card {
-  width: 28%;
+  margin: auto;
+  max-width: var(--body-width);
+  height: 100%;
 }
 </style>
