@@ -40,6 +40,7 @@ export default {
   font-size: 40px;
   top: 10px;
   position: absolute;
+  right: -15px;
 }
 
 .weather-card-temperature.is-negative::before {

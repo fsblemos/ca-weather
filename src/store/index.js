@@ -23,9 +23,18 @@ export default new Vuex.Store({
       { city: 'Nairobi', country: 'KE', loading: true },
     ],
   },
+  getters: {
+    card: state => ({ city, country }) => getCardByName(state.cards, { city, country }),
+    isExpired: state => moment().diff(state.updatedAt, 'minutes') >= MINUTES_INTERVAL,
+  },
   mutations: {
     setUpdatedAt(state, updatedAt) {
       state.updatedAt = updatedAt;
+    },
+    setCardError(state, { city, country, error }) {
+      const stateCard = getCardByName(state.cards, { city, country });
+
+      stateCard.error = error;
     },
     setCardWeather(state, { city, country, weather }) {
       const stateCard = getCardByName(state.cards, { city, country });
@@ -45,24 +54,30 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    setCardWeather({ commit }, card) {
-      return api.getWeather(card).then((weather) => {
-        const { temp, humidity, pressure } = weather;
-        const { city, country } = card;
+    async setCardWeather({ commit }, card) {
+      const { city, country } = card;
+
+      commit('setCardLoading', { city, country, loading: true });
+
+      try {
+        const weather = await api.getWeather(card);
 
         console.log(`Buscou ${city} da API`);
 
         commit('setCardWeather', { city, country, weather });
-        commit('setCardLoading', { city, country, loading: false });
         commit('setUpdatedAt', moment());
-      });
+        commit('setCardError', { city, country, error: null });
+      } catch (e) {
+        commit('setCardError', { city, country, error: 'Something went wrong' });
+      } finally {
+        commit('setCardLoading', { city, country, loading: false });
+      }
     },
-    getCards({ state, dispatch }) {
+    getCards({ state, getters, dispatch }) {
       const updatedAt = moment(state.updatedAt);
-      const isExpired = moment().diff(updatedAt, 'minutes') >= MINUTES_INTERVAL;
 
       state.cards.forEach(async (card) => {
-        if (!state.updatedAt || isExpired) {
+        if (!state.updatedAt || getters.isExpired || card.error) {
           await dispatch('setCardWeather', card);
         }
       });

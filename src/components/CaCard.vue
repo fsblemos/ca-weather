@@ -3,15 +3,13 @@
     <header class="ca-card-header">
       <p class="ca-card-title">{{ title }}</p>
     </header>
-    <CaLoader v-if="loading" />
-    <template v-else>
-      <div class="ca-card-body">
-        <slot></slot>
-      </div>
-      <footer class="ca-card-footer">
-        <slot name="footer"></slot>
-      </footer>
-    </template>
+    <div class="ca-card-body">
+      <CaLoader v-if="loading" />
+      <slot v-else></slot>
+    </div>
+    <footer class="ca-card-footer" v-if="!loading && $slots.footer">
+      <slot name="footer"></slot>
+    </footer>
   </div>
 </template>
 
@@ -30,6 +28,8 @@ export default {
 
 <style scoped>
 .ca-card {
+  display: flex;
+  flex-flow: column;
   background-color: white;
   box-shadow: 2px 1px 5px 0px var(--box-shadow-color);
   border: 1px solid var(--grey-light);
@@ -38,14 +38,14 @@ export default {
   position: relative;
 }
 
-.ca-card /deep/ .ca-loader {
+/* .ca-card /deep/ .ca-loader {
   margin: auto;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   position: absolute;
-}
+} */
 
 .ca-card-title {
   text-align: center;
@@ -53,15 +53,18 @@ export default {
 }
 
 .ca-card-body {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  flex-grow: 1;
+
 }
 
 .ca-card-footer {
   background-color: var(--grey-lighter);
-  bottom: 0;
   color: var(--grey-dark);
   height: 5rem;
-  position: absolute;
   width: 100%;
 }
 </style>

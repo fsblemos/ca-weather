@@ -1,11 +1,18 @@
 <template>
   <ca-card :title="`${city}, ${country}`" :loading="loading">
-    <WeatherCardTemperature :temperature="temperature" />
-    <WeatherCardFooter
-      slot="footer"
-      :humidity="humidity"
-      :pressure="pressure"
-      :updated-at="updatedAt" />
+    <div v-if="!!error" class="weather-card-error">
+      <span>{{ error }}</span>
+      <ca-button rounded @click="$store.dispatch('setCardWeather', { city, country })">
+        Try again
+      </ca-button>
+    </div>
+    <template v-else>
+      <WeatherCardTemperature :temperature="temperature" />
+      <WeatherCardFooter
+        slot="footer"
+        :humidity="humidity"
+        :pressure="pressure" />
+    </template>
   </ca-card>
 </template>
 
@@ -26,7 +33,20 @@ export default {
     temperature: Number,
     humidity: Number,
     pressure: Number,
-    updatedAt: Date,
+    error: String,
   },
 };
 </script>
+
+<style scoped>
+.weather-card-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weather-card-error > span {
+  color: var(--weather-red);
+  margin-bottom: 10px;
+}
+</style>

@@ -21,10 +21,14 @@
 <script>
 export default {
   name: 'WeatherCardFooter',
+  computed: {
+    updatedAt() {
+      return this.$store.state.updatedAt;
+    },
+  },
   props: {
     humidity: Number,
     pressure: Number,
-    updatedAt: Date,
   },
 };
 </script>
