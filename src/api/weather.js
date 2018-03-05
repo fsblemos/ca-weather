@@ -9,8 +9,8 @@ axios.interceptors.request.use((config) => {
 });
 
 export default {
-  getWeather({ city = '', uf = '' }) {
-    const url = `${BASE_URL}/weather?q=${city},${uf}`;
+  getWeather({ city = '', country = '' }) {
+    const url = `${BASE_URL}/weather?q=${city},${country}`;
 
     return axios.get(url)
       .then(response => response.data && response.data.main);

@@ -1,6 +1,10 @@
+import 'babel-polyfill';
+
 import Vue from 'vue';
+
 import App from './App';
 import api from './api';
+import store from './store';
 
 import './filters/index';
 
@@ -18,5 +22,6 @@ Vue.api = api;
 
 new Vue({
   el: '#app',
+  store,
   render: h => h(App),
 });

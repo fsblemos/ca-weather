@@ -24,10 +24,7 @@ export default {
   props: {
     humidity: Number,
     pressure: Number,
-    updatedAt: {
-      type: Date,
-      default: () => new Date(),
-    },
+    updatedAt: Date,
   },
 };
 </script>

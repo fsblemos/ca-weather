@@ -2,7 +2,7 @@ import Vue from 'vue';
 import WeatherCard from '../src/WeatherCard.vue';
 
 const Ctor = Vue.extend(WeatherCard);
-const mockCard = ({ city = '', uf = '', temperature = 0 }) => ({ city, uf, temperature });
+const mockCard = ({ city = '', country = '', temperature = 0 }) => ({ city, country, temperature });
 
 describe("WeatherCard", () => {
   it("shoud be cold when temperature is lower or equal to 5", () => {

@@ -17,28 +17,11 @@ export default {
     WeatherCard,
   },
   created() {
-    this.cards.forEach((card) => {
-      this.$api.weather.getWeather({ city: card.city, uf: card.uf })
-        .then(weather => this.setCardWeather(card, weather))
-        .then(card => card.loading = false);
-    })
+    this.$store.dispatch('getCards');
   },
-  data() {
-    return {
-      cards: [
-        { city: 'Nuuk', uf: 'GL', loading: true },
-        { city: 'Urubici', uf: 'BR', loading: true },
-        { city: 'Nairobi', uf: 'KE', loading: true },
-      ],
-    };
-  },
-  methods: {
-    setCardWeather(card, { temp, humidity, pressure }) {
-      this.$set(card, 'temperature', temp);
-      this.$set(card, 'humidity', humidity);
-      this.$set(card, 'pressure', pressure);
-
-      return card;
+  computed: {
+    cards() {
+      return this.$store.state.cards;
     },
   },
 };
