@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import WeatherCardFooter from './WeatherCardFooter';
-import WeatherCardTemperature from './WeatherCardTemperature';
+import WeatherCardFooter from './WeatherCardFooter.vue';
+import WeatherCardTemperature from './WeatherCardTemperature.vue';
 
 export default {
   name: 'WeatherCard',

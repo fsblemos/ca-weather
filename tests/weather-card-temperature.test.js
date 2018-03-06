@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import WeatherCard from '../src/WeatherCard.vue';
+import WeatherCardTemperature from '../src/pages/WeatherNow/WeatherCardTemperature.vue';
 
-const Ctor = Vue.extend(WeatherCard);
+const Ctor = Vue.extend(WeatherCardTemperature);
 const mockCard = ({ city = '', country = '', temperature = 0 }) => ({ city, country, temperature });
 
-describe("WeatherCard", () => {
+describe("WeatherCardTemperature", () => {
   it("shoud be cold when temperature is lower or equal to 5", () => {
     const vm = new Ctor({ propsData: mockCard({ temperature: 5 }) });
 
