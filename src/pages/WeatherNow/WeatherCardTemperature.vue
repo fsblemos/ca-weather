@@ -1,6 +1,6 @@
 <template>
   <span class="weather-card-temperature" :class="[`weather-${weather}`, { 'is-negative': temperature < 0}]">
-    {{ Math.abs(temperature) }}
+    {{ Math.round(Math.abs(temperature)) }}
   </span>
 </template>
 
